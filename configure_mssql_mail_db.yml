@@ -4,6 +4,6 @@
   
   tasks:
     - name: install SqlServerDsc
-      win_psmodule:
+      community.windows.win_psmodule:
         name: SqlServerDsc
         state: present
