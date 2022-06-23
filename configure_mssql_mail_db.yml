@@ -2,6 +2,9 @@
 - name: Configure AWS EC2 Image to communicate with Insights via RHC
   hosts: "{{ target_hosts }}"
   
+  collections: 
+    -  community.windows
+    
   tasks:
     - name: install SqlServerDsc
       community.windows.win_psmodule:
