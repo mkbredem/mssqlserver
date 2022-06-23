@@ -11,4 +11,4 @@
     - name: copy sql server exe file to host
       win_copy: 
         src: SQL2019-SSEI-Dev.exe
-        dest: C:\Temp\SQL2019-SSEI-Dev.exe
+        dest: C:\Windows\Temp\SQL2019-SSEI-Dev.exe
