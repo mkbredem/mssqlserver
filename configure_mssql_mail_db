@@ -1,0 +1,9 @@
+---
+- name: Configure AWS EC2 Image to communicate with Insights via RHC
+  hosts: "{{ target_hosts }}"
+  
+  tasks:
+    - name: install SqlServerDsc
+      win_psmodule:
+        name: SqlServerDsc
+        state: present
