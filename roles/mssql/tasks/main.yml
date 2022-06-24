@@ -67,8 +67,8 @@
     description: "SQL Service account for {{ inventory_hostname }}\\{{ mssql_instance_name }}"
     state: present
 #    path: "{{ mssql_base_ldap_path }}"
-    groups:
-      - Domain Users
+#    groups:
+#      - Domain Users
 #  tags: service_account
 #  delegate_to: "{{ domain_controller }}"
 
@@ -83,8 +83,8 @@
     description: "SQL Agent service account for {{ inventory_hostname }}\\{{ mssql_instance_name }}"
     state: present
 #    path: "{{ mssql_base_ldap_path }}"
-    groups:
-      - Domain Users
+#    groups:
+#      - Domain Users
 #  delegate_to: "{{ domain_controller }}"
 #  tags: service_account
 
