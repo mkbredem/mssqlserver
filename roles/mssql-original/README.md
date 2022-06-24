@@ -1,3 +1,46 @@
+kkolk.mssql
+=========
+Description
+-----------
+This ansible role will install a SQL Server Developer Edition 2017 instance on supported Windows platforms.  This role can be adjusted to install any supported SQL server installation.  I've used variants of it to install SQL Server 2012/2014. 
+
+This role also handles local firewall changes as required and demonstrates how to make configuration adjustments to the SQL instance.
+
+Using default values it's designed to work as an role that can be added to the member server in the windows test environment I've laid out through a series of posts on http://frostbyte.us/configure-an-ansible-testing-system-on-windows-part-1/ 
+
+Requirements
+------------
+
+Powershell 5.0 / WMF 5.1 should be installed on target host.
+
+You can do this in two steps with:
+
+```yaml
+# The latest powershell gives us more flexiablity to use Windows DSC items
+- name: Windows | Install Powershell 5.0
+  win_chocolatey:
+    name: "powershell"
+  register: check_powershell5
+  become: yes
+  become_user: Administrator
+  become_method: runas
+  retries: 3
+  delay: 10
+
+# Powershell 5.0 requires a reboot, so lets get it done if it's needed.
+- name: Windows | Reboot to complete Powershell 5.0 install
+  win_reboot:
+    # We will give windows a full hour to reboot.
+    reboot_timeout: 3600
+    post_reboot_delay: 60
+  when: check_powershell5.changed
+```
+
+Role Variables
+--------------
+
+
+```yaml
 # installation files source 
 mssql_installation_source: https://go.microsoft.com/fwlink/?linkid=853016
 
@@ -32,18 +75,15 @@ mssql_suppress_reboot: False
 
 ### Service Accounts ###
 
-mssql_base_ldap_path: "cn=Users,dc=CONTOSO,dc=com"
-domain_controller: dc01
-
 # SQL Service Account
 # regex statements used in some steps expect the format of CONTOSO\
 # do not use @CONTOSO.com for these accounts as SQL install will fail
-mssql_sqlsvc_account: sql_svc
-mssql_sqlsvc_account_pass: r3dh4t1!
+mssql_sqlsvc_account: CONTOSO\sql_svc
+mssql_sqlsvc_account_pass: MyPlainTextPassWord01
 
 # SQL Agent Service Account
-mssql_agentsvc_account: sql_agt
-mssql_agentsvc_account_pass: r3dh4t1!
+mssql_agentsvc_account: CONTOSO\sql_agt
+mssql_agentsvc_account_pass: MyPlainTextPassWord01
 
 # SQL Analysis Services Account
 mssql_assvc_account: "{{ mssql_sqlsvc_account }}"
@@ -157,3 +197,24 @@ mssql_max_degree_of_parallelism: 0
 # set it to some reasonable value to ensure that the operating system does not request too 
 # much memory from SQL Server, which can affect SQL Server performance.
 mssql_min_server_memory: 0
+```
+
+Example Playbook
+----------------
+```yaml
+- name: SQL Server
+  hosts: sql_server
+  tags: mssql
+
+  roles:
+  - { role: kkolk.mssql }
+```
+License
+-------
+
+BSD / MIT
+
+Author Information
+------------------
+
+Kevin Kolk - http://www.frostbyte.us

@@ -18,6 +18,8 @@
         name: Net-Framework-45-Core
         state: present
 
+
+
     - name: setup sql server
       win_dsc: 
         resource_name: SqlServerConfiguration
