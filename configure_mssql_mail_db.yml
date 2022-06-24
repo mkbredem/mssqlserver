@@ -12,3 +12,10 @@
       win_copy: 
         src: SQL2019-SSEI-Dev.exe
         dest: C:\Windows\Temp\SQL2019-SSEI-Dev.exe
+
+    - name: ensure .net framework is present 
+      win_feature:
+        name: Net_framework-45-Core
+        state: present
+
+#    - name: insall sql server package
