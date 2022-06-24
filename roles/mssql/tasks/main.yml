@@ -9,9 +9,9 @@
     name: SQLServerDsc
     state: present
 
-- name: Powershell | Check for SqlServerConfiguration DSC Powershell module
+- name: Powershell | Check for SqlConfiguration DSC Powershell module
   win_psmodule:
-    name: SqlServerConfiguration
+    name: SqlConfiguration
     state: present
 
 - name: Powershell | Check for Storage DSC Powershell module
