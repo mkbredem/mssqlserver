@@ -57,7 +57,7 @@
 # We delegate this process to our domain controller since the required AD services are there for
 # win_domain_user to interact with. 
 - name: Local User | Ensure SQL Service account is present
-  win_domain_user:
+  win_user:
     name: "{{ mssql_sqlsvc_account }}"
 #    firstname: "{{ mssql_instance_name }}"
 #    surname: SQLSvc
@@ -73,7 +73,7 @@
 #  delegate_to: "{{ domain_controller }}"
 
 - name: Local User | Ensure SQL Agent Service account is present
-  win_domain_user:
+  win_user:
     name: "{{ mssql_agentsvc_account }}"
 #    firstname: "{{ mssql_instance_name }}"
 #    surname: AgentSvc
