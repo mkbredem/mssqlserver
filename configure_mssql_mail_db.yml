@@ -18,4 +18,11 @@
         name: Net-Framework-45-Core
         state: present
 
-#    - name: insall sql server package
+    - name: setup sql server
+      win_dsc: 
+        resource_name: SqlServerConfiguration
+        servername: "{{ inventory_hostname }}"
+        instancename: Test-Mail-DB
+        optionname: 'Database Mail XPs'
+        optionvalue: 1
+        restartservice: false
