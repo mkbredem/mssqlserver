@@ -11,19 +11,12 @@
 - name: Setup MS SQL Mail Server
   win_dsc:
     resource_name: SqlDatabaseMail
-    ServerName: "{{ inventory_hostname }}"
-#        The hostname of the SQL Server to be configured.
-#        Default value is the current computer name.
+    ServerName: "{{ ansible_facts['hostname'] }}"
     InstanceName: "{{ mssql_instance_name }}"
-#        The name of the SQL instance to be configured.
     AccountName: "{{ mssql_instance_name }}"
-#        The name of the Database Mail account
     EmailAddress: "MTADBServer@MTA.local"
-#        The e-mail address from which mail will originate
     MailServerName: "{{ ansible_facts.ip_addresses[1]}}"
-#        The fully qualified domain name of the mail server name to which e-mail are sent.
     ProfileName: "{{ mssql_instance_name }}"
-#        The name of the Database Mail profile
     PsDscRunAsCredential_username: "{{ dsc_cred_user }}"
     PsDscRunAsCredential_password: "{{ dsc_cred_passwd }}"
     Ensure: Present
