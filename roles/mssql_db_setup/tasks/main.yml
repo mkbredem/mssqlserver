@@ -2,7 +2,11 @@
 # Begin SQL Database Setup - link to DSC Resource MOF/Variables: https://github.com/dsccommunity/SqlServerDsc/blob/main/source/DSCResources/DSC_SqlDatabaseMail/DSC_SqlDatabaseMail.schema.mof
 - name: give me some variable values
   debug:
-    msg: The InstanceName, AccountName, and ProfileName should be {{ mssql_instance_name }}. 
+    msg: | 
+      The InstanceName, AccountName, and ProfileName should be {{ mssql_instance_name }}.
+      The ServerName is {{ inventory_hostname }} 
+      The MailServerName is {{ ansible_facts.ip_addresses[1] }}
+      The DscRunAsCredential _username: {{ mssql_sqlsvc_account }}_password: {{ mssql_sqlsvc_account_pass }}
 
 - name: Setup MS SQL Mail Server
   win_dsc:
@@ -14,7 +18,7 @@
 #        The name of the SQL instance to be configured.
     AccountName: "{{ mssql_instance_name }}"
 #        The name of the Database Mail account
-    EmailAddress: "MTADBServer@MTAlocal"
+    EmailAddress: "MTADBServer@MTA.local"
 #        The e-mail address from which mail will originate
     MailServerName: "{{ ansible_facts.ip_addresses[1]}}"
 #        The fully qualified domain name of the mail server name to which e-mail are sent.
