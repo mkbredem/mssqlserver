@@ -37,8 +37,8 @@
           sub_features: true
         - name: DSC-Service
       loop_control:
-      loop_var: feature_item
-      label: "{{ feature_item.name }}"
+        loop_var: feature_item
+        label: "{{ feature_item.name }}"
   tags:
     - install_prerequisites
 
