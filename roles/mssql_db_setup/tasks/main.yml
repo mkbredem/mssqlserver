@@ -8,6 +8,15 @@
       The MailServerName is {{ ansible_facts.ip_addresses[1] }}
       The DscRunAsCredential _username: {{ mssql_sqlsvc_account }} _password: {{ mssql_sqlsvc_account_pass }}
 
+- name: Enable database mail XPs
+  win_dsc:
+    resource_name: SqlConfiguration 
+    ServerName: "{{ ansible_hostname }}"
+    InstanceName: "{{ mssql_instance_name }}"
+    OptionName: Database Mail XPs
+    OptionValue: 1
+  tags: configure_mail_server
+
 - name: Setup MS SQL Mail Server
   win_dsc:
     resource_name: SqlDatabaseMail
