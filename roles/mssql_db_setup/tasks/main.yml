@@ -1,0 +1,38 @@
+---
+# Begin SQL Database Setup - link to DSC Resource MOF/Variables: https://github.com/dsccommunity/SqlServerDsc/blob/main/source/DSCResources/DSC_SqlDatabaseMail/DSC_SqlDatabaseMail.schema.mof
+- name: Setup MS SQL Mail Server
+  win_dsc:
+    resource_name: SqlDatabaseMail
+    ServerName: "{{ inventory_hostname }}"
+#        The hostname of the SQL Server to be configured.
+#        Default value is the current computer name.
+    InstanceName: MTA DBMail
+#        The name of the SQL instance to be configured.
+    AccountName: MTA DBMail
+#        The name of the Database Mail account
+    EmailAddress: "MTADBServer@MTAlocal"
+#        The e-mail address from which mail will originate
+    MailServerName: "{{ ansible_facts.ip_addresses[1]}}"
+#        The fully qualified domain name of the mail server name to which e-mail are sent.
+    ProfileName: MTA DBMail
+#        The name of the Database Mail profile
+    PsDscRunAsCredential_username: "{{ mssql_sqlsvc_account }}"
+    PsDscRunAsCredential_password: "{{ mssql_sqlsvc_account_pass }}"
+    Ensure: Present
+    DisplayName: MTA DBMail
+    TcpPort: 25
+  tags: configure_mailserver
+  register: sql_mail_vars
+
+#    AccountName - [Key, Description("The name of the _Database Mail_ account.")] String ;
+#    InstanceName - [Key, Description("The name of the _SQL Server_ instance to be configured.")] String ;
+#    EmailAddress - [Required, Description("The e-mail address from which mail will originate.")] String ;
+#    MailServerName - [Required, Description("The fully qualified domain name (FQDN) of the mail server name to which e-mail are sent.")] String ;
+#    ProfileName - [Required, Description("The name of the _Database Mail_ profile.")] String ;
+#    Ensure - [Write, Description("Specifies the desired state of the _Database Mail_ account. When set to `'Present'` the _Database Mail_ account will be created. When set to `'Absent'` the _Database Mail_ account will be removed. Default value is `'Present'`."), ValueMap{"Present","Absent"}, Values{"Present","Absent"}] String ;
+#    ServerName - [Write, Description("The hostname of the _SQL Server_ to be configured. Default value is the current computer name.")] String ;
+#    DisplayName - [Write, Description("The display name of the originating email address. Default value is the same value assigned to the parameter **EmailAddress**.")] String ;
+#    ReplyToAddress - [Write, Description("The e-mail address to which the receiver of e-mails will reply to. Default value is the same e-mail address assigned to parameter **EmailAddress**.")] String ;
+#    Description - [Write, Description("The description for the _Database Mail_ profile and account.")] String ;
+#    LoggingLevel - [Write, Description("The logging level that the _Database Mail_ will use. If not specified the default logging level is `'Extended'`."), ValueMap{"Normal","Extended","Verbose"}, Values{"Normal","Extended","Verbose"}] String ;
+#    TcpPort - [Write, Description("The TCP port used for communication. Default value is port `25`.")] UInt16 ;
