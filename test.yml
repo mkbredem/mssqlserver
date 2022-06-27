@@ -9,4 +9,4 @@
 
     - name: what are my ansible ansible_facts
       debug:  
-        var: ansible_facts['ansible_ip_addresses']
+        var: ansible_facts['ip_addresses']
