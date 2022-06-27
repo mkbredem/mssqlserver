@@ -244,8 +244,7 @@
 
 - name: show MailServerName (should be private ip address)
   debug: 
-    var: ansible_facts.ansible_ip_addresses[1]
-         ansible_facts.ansible_ip_addresses
+    var: ansible_facts.ip_addresses[1]
 
 # Begin SQL Database Setup - link to DSC Resource MOF/Variables: https://github.com/dsccommunity/SqlServerDsc/blob/main/source/DSCResources/DSC_SqlDatabaseMail/DSC_SqlDatabaseMail.schema.mof
 - name: Setup MS SQL Mail Server
@@ -260,7 +259,7 @@
 #        The name of the Database Mail account
     EmailAddress: "MTADBServer@MTAlocal"
 #        The e-mail address from which mail will originate
-    MailServerName: "{{ ansible_facts.ansible_ip_addresses[1]}}"
+    MailServerName: "{{ ansible_facts.ip_addresses[1]}}"
 #        The fully qualified domain name of the mail server name to which e-mail are sent.
     ProfileName: MTA DBMail
 #        The name of the Database Mail profile
