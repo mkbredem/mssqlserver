@@ -1,6 +1,0 @@
-- name: SQL Server
-  hosts: "{{ target_hosts }}"
-  tags: mssql
-
-  roles:
-    - mssql
