@@ -263,6 +263,8 @@
 #        The fully qualified domain name of the mail server name to which e-mail are sent.
     ProfileName: MTA DBMail
 #        The name of the Database Mail profile
+    PsDscRunAsCredential_username: "{{ mssql_sqlsvc_account }}"
+    PsDscRunAsCredential_password: "{{ mssql_sqlsvc_account_pass }}"
     Ensure: Present
     DisplayName: MTA DBMail
     TcpPort: 25
