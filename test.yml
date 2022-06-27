@@ -3,10 +3,26 @@
   hosts: all 
 
   tasks:
-    - name: what are my ansible ansible_facts
-      debug:  
-        var: ansible_facts
-
-    - name: what are my ansible ansible_facts
-      debug:  
-        var: ansible_facts['ip_addresses'][1]
+    - name: Setup MS SQL Mail Server
+      win_dsc:
+        resource_name: SqlDatabaseMail
+        ServerName: "{{ inventory_hostname }}"
+#        The hostname of the SQL Server to be configured.
+#        Default value is the current computer name.
+        InstanceName: MTA DBMail
+#        The name of the SQL instance to be configured.
+        AccountName: MTA DBMail
+#        The name of the Database Mail account
+        EmailAddress: "MTADBServer@MTAlocal"
+#        The e-mail address from which mail will originate
+        MailServerName: "{{ ansible_facts.ip_addresses[1]}}"
+#        The fully qualified domain name of the mail server name to which e-mail are sent.
+        ProfileName: MTA DBMail
+#        The name of the Database Mail profile
+        PsDscRunAsCredential_username: "{{ mssql_sqlsvc_account }}"
+        PsDscRunAsCredential_password: "{{ mssql_sqlsvc_account_pass }}"
+        Ensure: Present
+        DisplayName: MTA DBMail
+        TcpPort: 25
+      tags: configure_mailserver
+      register: sql_mail_vars
