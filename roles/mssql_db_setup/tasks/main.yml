@@ -6,7 +6,7 @@
       The InstanceName, AccountName, and ProfileName should be {{ mssql_instance_name }}.
       The ServerName is {{ inventory_hostname }} 
       The MailServerName is {{ ansible_facts.ip_addresses[1] }}
-      The DscRunAsCredential _username: {{ mssql_sqlsvc_account }}_password: {{ mssql_sqlsvc_account_pass }}
+      The DscRunAsCredential _username: {{ mssql_sqlsvc_account }} _password: {{ mssql_sqlsvc_account_pass }}
 
 - name: Setup MS SQL Mail Server
   win_dsc:
@@ -29,6 +29,9 @@
     Ensure: Present
     DisplayName: "TestDBServer"
     TcpPort: 25
+  vars:
+    dsc_cred_user: administrator
+    dsc_cred_passwd: myTempPassword123
   tags: configure_mailserver
   register: sql_mail_vars
 
