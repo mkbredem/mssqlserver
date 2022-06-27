@@ -6,20 +6,20 @@
     ServerName: "{{ inventory_hostname }}"
 #        The hostname of the SQL Server to be configured.
 #        Default value is the current computer name.
-    InstanceName: MTA DBMail
+    InstanceName: "{{ mssql_instance_name }}"
 #        The name of the SQL instance to be configured.
-    AccountName: MTA DBMail
+    AccountName: "{{ mssql_instance_name }}"
 #        The name of the Database Mail account
     EmailAddress: "MTADBServer@MTAlocal"
 #        The e-mail address from which mail will originate
     MailServerName: "{{ ansible_facts.ip_addresses[1]}}"
 #        The fully qualified domain name of the mail server name to which e-mail are sent.
-    ProfileName: MTA DBMail
+    ProfileName: "{{ mssql_instance_name }}"
 #        The name of the Database Mail profile
     PsDscRunAsCredential_username: "{{ mssql_sqlsvc_account }}"
     PsDscRunAsCredential_password: "{{ mssql_sqlsvc_account_pass }}"
     Ensure: Present
-    DisplayName: MTA DBMail
+    DisplayName: "TestDBServer"
     TcpPort: 25
   tags: configure_mailserver
   register: sql_mail_vars
