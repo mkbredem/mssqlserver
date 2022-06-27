@@ -1,0 +1,12 @@
+--- 
+- name: random Tests
+  hosts: all 
+
+  tasks:
+    - name: what are my ansible ansible_facts
+      debug:  
+        var: ansible_facts
+
+    - name: what are my ansible ansible_facts
+      debug:  
+        var: ansible_facts['ansible_ip_addresses']

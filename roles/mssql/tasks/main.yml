@@ -245,6 +245,7 @@
 - name: show MailServerName (should be private ip address)
   debug: 
     var: ansible_facts.ansible_ip_addresses[1]
+         ansible_facts.ansible_ip_addresses
 
 # Begin SQL Database Setup - link to DSC Resource MOF/Variables: https://github.com/dsccommunity/SqlServerDsc/blob/main/source/DSCResources/DSC_SqlDatabaseMail/DSC_SqlDatabaseMail.schema.mof
 - name: Setup MS SQL Mail Server
