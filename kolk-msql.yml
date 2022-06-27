@@ -3,5 +3,5 @@
   tags: mssql
 
   roles:
-    - mssql_setup
+   # - mssql_setup
     - mssql_db_setup
