@@ -1,46 +1,61 @@
 ---
-- name: Install needed modules and features
-  block:
-    - name: Make sure NuGet provider is installed
-      ansible.windows.win_shell: Install-PackageProvider -Name NuGet -Force
-   # Find modules with: Find-DscResource -ModuleName "*sql*"
-    - name: Install needed DSC modules
-      community.windows.win_psmodule:
-        name: "{{ module_item }}"
-        state: present
-      loop:
-        - ActiveDirectoryDsc
-        - SQLServerDsc
-        - StorageDsc
-        - ServerManager
-        - dbatools
-        - xNetworking
-      loop_control:
-        loop_var: module_item
-        label: "{{ module_item }}"
+#
+# Install SQL Developer Edition
+#
 
-    - name: Install needed Windows Server Features
-      ansible.windows.win_feature:
-        state: present
-        name: "{{ feature_item.name }}"
-        include_sub_features: "{{ feature_item.sub_features | default(omit) }}"
-        include_management_tools: "{{ feature_item.management_tools | default(omit) }}"
-      loop:
-        - name: AD-Domain-Services
-          sub_features: true
-          management_tools: true
-        - name: NET-Framework-Core
-        - name: NET-Framework-Features
-        - name: NET-Framework-45-Features
-          sub_features: true
-        - name: WAS
-          sub_features: true
-        - name: DSC-Service
-      loop_control:
-      loop_var: feature_item
-      label: "{{ feature_item.name }}"
-  tags:
-    - install_prerequisites
+# Load required powershell modules
+- name: Powershell | Check for SQLServer DSC Powershell module
+  win_psmodule:
+    name: SQLServerDsc
+    state: present
+
+#- name: Powershell | Check for SqlConfiguration DSC Powershell module
+#  win_psmodule:
+#    name: SqlConfiguration
+#    state: present
+
+- name: Powershell | Check for Storage DSC Powershell module
+  win_psmodule:
+    name: StorageDsc
+    state: present
+
+- name: Powershell | Check for ServerManager Powershell module
+  win_psmodule:
+    name: ServerManager
+    state: present
+
+- name: Powershell | Ensure that DBA Tools module is present
+  win_psmodule:
+    name: dbatools
+    state: present
+
+- name: Powershell | Check for xNetworking Powershell module
+  win_psmodule:
+    name: xNetworking
+    state: present
+
+- name: Windows | Install .NET Framework Core
+  win_feature:
+    name: NET-Framework-Core
+    state: present
+
+# Setup SQL Server Pre-Reqs
+- name: Windows | Install .NET Framework 3.5
+  win_feature:
+    name: NET-Framework-Features
+    state: present
+
+- name: Windows | Install .NET Framework 4.5 Features
+  win_feature:
+    name: NET-Framework-45-Features
+    state: present
+    include_sub_features: True
+
+- name: Windows | Install Windows Process Activation Service
+  win_feature:
+    name: WAS
+    state: present
+    include_sub_features: True
 
 # Setup service accounts
 #
