@@ -8,6 +8,13 @@
       The MailServerName is {{ ansible_facts.ip_addresses[1] }}
       The DscRunAsCredential _username: {{ mssql_sqlsvc_account }} _password: {{ mssql_sqlsvc_account_pass }}
 
+- name: Install needed DSC modules
+  community.windows.win_psmodule:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - SqlServer
+
 - name: Enable database mail XPs
   win_dsc:
     resource_name: SqlConfiguration 
