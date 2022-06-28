@@ -12,6 +12,7 @@
   community.windows.win_psmodule:
     name: "{{ item }}"
     state: present
+    allow_clobber: yes
   loop:
     - SqlServer
 
