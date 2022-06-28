@@ -8,13 +8,11 @@
       The MailServerName is {{ ansible_facts.ip_addresses[1] }}
       The DscRunAsCredential _username: {{ mssql_sqlsvc_account }} _password: {{ mssql_sqlsvc_account_pass }}
 
-- name: Install needed DSC modules
-  community.windows.win_psmodule:
-    name: "{{ item }}"
-    state: present
-    allow_clobber: yes
-  loop:
-    - SqlServer
+#- name: Install needed DSC modules
+#  community.windows.win_psmodule:
+#    name: SqlServer
+#    state: present
+#    allow_clobber: yes
 
 - name: Enable database mail XPs
   win_dsc:
@@ -39,9 +37,6 @@
     Ensure: Present
     DisplayName: "TestDBServer"
     TcpPort: 25
-  vars:
-    dsc_cred_user: administrator
-    dsc_cred_passwd: myTempPassword123!
   tags: configure_mailserver
   register: sql_mail_vars
 
