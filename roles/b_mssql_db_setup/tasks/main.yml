@@ -32,8 +32,8 @@
     EmailAddress: "{{ mssql_email_address }}"
     MailServerName: "{{ ansible_facts.ip_addresses[1]}}"
     ProfileName: "{{ mssql_mail_db_instance_name }}"
-#    PsDscRunAsCredential_username: "{{ dsc_cred_user }}"
-#    PsDscRunAsCredential_password: "{{ dsc_cred_passwd }}"
+    PsDscRunAsCredential_username: "{{ dsc_cred_user }}"
+    PsDscRunAsCredential_password: "{{ dsc_cred_passwd }}"
     Ensure: Present
     DisplayName: "{{ mssql_mail_db_display_name }}"
     TcpPort: 25
