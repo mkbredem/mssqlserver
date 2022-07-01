@@ -27,11 +27,11 @@
   win_dsc:
     resource_name: SqlDatabaseMail
     ServerName: "{{ inventory_hostname }}" # tried: ansible_facts['hostname']
-    InstanceName: "{{ mssql_instance_name }}"
-    AccountName: "{{ mssql_instance_name }}"
+    InstanceName: "{{ mssql_mail_db_instance_name }}"
+    AccountName: "{{ mssql_mail_db_instance_name }}"
     EmailAddress: "{{ mssql_email_address }}"
     MailServerName: "{{ ansible_facts.ip_addresses[1]}}"
-    ProfileName: "{{ mssql_instance_name }}"
+    ProfileName: "{{ mssql_mail_db_instance_name }}"
     PsDscRunAsCredential_username: "{{ dsc_cred_user }}"
     PsDscRunAsCredential_password: "{{ dsc_cred_passwd }}"
     Ensure: Present
