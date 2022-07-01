@@ -26,7 +26,7 @@
 - name: Setup MS SQL Mail Server
   win_dsc:
     resource_name: SqlDatabaseMail
-    ServerName: "{{ ansible_facts['hostname'] }}" # tried: ansible_facts['hostname']
+    ServerName: "{{ ansible_facts['hostname'] }}\{{ mssql_instance_name }} # tried: ansible_facts['hostname']
     InstanceName: "{{ mssql_mail_db_instance_name }}"
     AccountName: "{{ mssql_mail_db_instance_name }}"
     EmailAddress: "{{ mssql_email_address }}"
