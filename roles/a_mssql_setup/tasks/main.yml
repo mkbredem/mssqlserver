@@ -241,3 +241,46 @@
     OptionName: max degree of parallelism
     OptionValue: "{{ mssql_max_degree_of_parallelism }}"
   tags: configure_sql
+
+- name: Shows all the actual variable values used
+  debug: 
+    msg: |
+      mssql_installation_source: {{  mssql_installation_source }}
+      mssql_installation_path: {{  mssql_installation_path }}
+      mssql_temp_download_path: {{  mssql_temp_download_path  }}
+      mssql_instance_name: {{  mssql_instance_name }}
+      mssql_drive: {{  mssql_drive }}
+      mssql_userdbvol_name: {{  mssql_userdbvol_name  }}
+      mssql_port: {{  mssql_port  }}
+      mssql_max_server_memory: {{  mssql_max_server_memory }}
+      mssql_os_memory_reservation: {{  mssql_os_memory_reservation }}
+      mssql_total_system_memory: {{  mssql_total_system_memory }}
+      mssql_suppress_reboot: {{  mssql_suppress_reboot }}
+      mssql_base_ldap_path: {{  mssql_base_ldap_path  }}
+      domain_controller: {{  domain_controller }}
+      mssql_sqlsvc_account: {{  mssql_sqlsvc_account  }}
+      mssql_sqlsvc_account_pass: {{  mssql_sqlsvc_account_pass }}
+      mssql_agentsvc_account: {{  mssql_agentsvc_account  }}
+      mssql_agentsvc_account_pass: {{  mssql_agentsvc_account_pass }}
+      mssql_assvc_account: {{  mssql_assvc_account }}
+      mssql_assvc_account_pass: {{  mssql_assvc_account_pass  }}
+      mssql_userdbvol_path: {{  mssql_userdbvol_path  }}
+      mssql_db_accesspath: {{  mssql_db_accesspath }}
+      mssql_logs_accesspath: {{  mssql_logs_accesspath }}
+      mssql_installshared_path: {{  mssql_installshared_path  }}
+      mssql_installsharedwow_path: {{  mssql_installsharedwow_path }}
+      mssql_instance_path: {{  mssql_instance_path }}
+      mssql_sqlinstalldata_path: {{  mssql_sqlinstalldata_path }}
+      mssql_sqluserdata_path: {{  mssql_sqluserdata_path  }}
+      mssql_sqluserlog_path: {{  mssql_sqluserlog_path }}
+      mssql_sqltempDB_path: {{  mssql_sqltempDB_path  }}
+      mssql_sqltempDBlog_path: {{  mssql_sqltempDBlog_path }}
+      mssql_security_mode: {{  mssql_security_mode }}
+      mssql_sa_password: {{  mssql_sa_password }}
+      mssql_features: {{  mssql_features  }}
+      mssql_collation: {{  mssql_collation }}
+      mssql_browsersvc_mode: {{  mssql_browsersvc_mode }}
+      mssql_sysadmin_accounts: {{  mssql_sysadmin_accounts }}
+      mssql_asadmin_accounts: {{  mssql_asadmin_accounts  }}
+      mssql_max_degree_of_parallelism: {{  mssql_max_degree_of_parallelism }}
+      mssql_min_server_memory: {{  mssql_min_server_memory }}
