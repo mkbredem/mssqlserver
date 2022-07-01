@@ -1,10 +1,10 @@
 ---
 # tasks file for ssms_setup
 
-- name: Dowload SQL Server Management Studio (SSMS)
-  win_get_url:
-    url: https://aka.ms/ssmsfullsetup
-    dest: "{{ mssql_temp_download_path }}\\SSMS-Setup-ENU.exe"
+#- name: Dowload SQL Server Management Studio (SSMS)
+#  win_get_url:
+#    url: https://aka.ms/ssmsfullsetup
+#    dest: "{{ mssql_temp_download_path }}\\SSMS-Setup-ENU.exe"
 
 - name: Dowload SQL Server Management Studio (SSMS)
   ansible.windows.win_package:
