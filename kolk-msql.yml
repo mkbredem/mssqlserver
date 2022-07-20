@@ -4,5 +4,5 @@
 
   roles:
     - a_mssql_setup
-#    - ssms_setup
+    - ssms_setup
 #    - b_mssql_db_setup
