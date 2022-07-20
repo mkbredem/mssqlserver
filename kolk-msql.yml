@@ -3,6 +3,6 @@
   tags: mssql
 
   roles:
-#    - a_mssql_setup
+    - a_mssql_setup
 #    - ssms_setup
-    - b_mssql_db_setup
+#    - b_mssql_db_setup
