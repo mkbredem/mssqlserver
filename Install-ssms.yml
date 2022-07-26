@@ -1,5 +1,5 @@
 - name: SQL Server
-  hosts: "{{ target_hosts }}"
+  hosts: plat_windows
 
   roles:
     - ssms_setup
