@@ -12,5 +12,5 @@
     path: https://go.microsoft.com/fwlink/?linkid=2195969&clcid=0x409
     arguments:
     - /install
-    - /passive
-    - /norestart
+    - /quiet
+#    - /norestart
