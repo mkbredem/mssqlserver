@@ -29,7 +29,7 @@
     ServerName: "{{ ansible_facts['hostname'] }}"  # tried: ansible_facts['hostname']
     InstanceName: "{{ mssql_instance_name }}"
     AccountName: "{{ mssql_mail_db_instance_name }}"
-    EmailAddress: "{{ mssql_email_address }}"
+    EmailAddress: "{{ mssql_mail_db_email_address }}"
     MailServerName: "{{ ansible_facts.ip_addresses[1]}}"
     ProfileName: "{{ mssql_mail_db_instance_name }}"
 #    PsDscRunAsCredential_username: "{{ dsc_cred_user }}"
