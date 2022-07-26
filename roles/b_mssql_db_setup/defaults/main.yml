@@ -1,3 +1,5 @@
+mssql_mail_db_instance_name: MTA DBMail
+
 # installation files source 
 mssql_installation_source: https://go.microsoft.com/fwlink/?linkid=853016
 
