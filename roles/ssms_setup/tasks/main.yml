@@ -2,15 +2,16 @@
 # tasks file for ssms_setup
 # MS Docs: https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16#download-ssms
 
-#- name: Dowload SQL Server Management Studio (SSMS)
-#  win_get_url:
-#    url: https://aka.ms/ssmsfullsetup
-#    dest: "{{ mssql_temp_download_path }}\\SSMS-Setup-ENU.exe"
+- name: Dowload SQL Server Management Studio (SSMS)
+  win_get_url:
+    url: https://aka.ms/ssmsfullsetup
+    dest: "{{ mssql_temp_download_path }}\\SSMS-Setup-ENU.exe"
 
 - name: Dowload and install SQL Server Management Studio (SSMS)
   ansible.windows.win_package:
-    path: https://go.microsoft.com/fwlink/?linkid=2195969&clcid=0x409
+    path: "{{ mssql_temp_download_path }}\\SSMS-Setup-ENU.exe"
+#    path: https://go.microsoft.com/fwlink/?linkid=2195969&clcid=0x409
     arguments:
     - /install
     - /quiet
-#    - /norestart
+    - /norestart
