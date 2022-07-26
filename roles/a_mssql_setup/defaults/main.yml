@@ -2,7 +2,7 @@
 mssql_installation_source: https://go.microsoft.com/fwlink/?linkid=853016
 
 # Path to download installation media to
-mssql_installation_path: 'C:\SQLInstall'
+mssql_installation_path: C:\SQLInstall
 
 # Temporary path to store downloader
 mssql_temp_download_path: C:\Windows\Temp
