@@ -1,41 +1,10 @@
 mssql_mail_db_instance_name: MTA DBMail
 
-# installation files source 
-mssql_installation_source: https://go.microsoft.com/fwlink/?linkid=853016
-
-# Path to download installation media to
-mssql_installation_path: C:\SQLInstall
-
-# Temporary path to store downloader
-mssql_temp_download_path: C:\Windows\Temp
-
 # instance details
 mssql_instance_name: Test
 mssql_drive: C
 mssql_userdbvol_name: Userdbvol01
 mssql_port: 1433
-
-### Memory Configuration ###
-# memory in MB
-# values must be divisible by 512
-
-# Max memory to allocate to this instance
-mssql_max_server_memory: 1024
-
-# Memory to reserve to the OS
-mssql_os_memory_reservation: 512
-
-# Total system memory 
-mssql_total_system_memory: "{{ mssql_max_server_memory + mssql_os_memory_reservation }}"
-
-# Suppress reboots that may occur during SQL Setup tasks
-# you will want to set this to True if working on a sensitive system:
-mssql_suppress_reboot: False
-
-### Service Accounts ###
-
-mssql_base_ldap_path: "cn=Users,dc=CONTOSO,dc=com"
-domain_controller: dc01
 
 # SQL Service Account
 # regex statements used in some steps expect the format of CONTOSO\
