@@ -1,4 +1,7 @@
 mssql_mail_db_instance_name: MTA DBMail
+mssql_email_address: MTADBServer@MTA.local
+dsc_cred_user:
+dsc_cred_passwd:
 
 # instance details
 mssql_instance_name: Test
