@@ -98,7 +98,7 @@
 - name: Fetch SQL Media Downloader
   win_get_url:
     url: "{{ mssql_installation_source }}"
-    dest: "{{ mssql_temp_download_path }}\\SQLServer2017-SSEI-Dev.exe"
+    dest: "{{ mssql_temp_download_path }}\\SQLServer2019-SSEI-Dev.exe"
 
 # THIS WAS THE WAY IT WAS ORIGINALLY WRITTEN.  TRYING WIN_PACKAGE MODULE INSTEAD BELOW
 #- name: Use Media Downloader to fetch SQL Installation CABs to {{ mssql_installation_path }}
@@ -106,7 +106,7 @@
 
 - name: Use Media Downloader to fetch SQL Installation CABs to {{ mssql_installation_path }}
   win_package: 
-    path: "{{ mssql_temp_download_path }}\\SQLServer2017-SSEI-Dev.exe"
+    path: "{{ mssql_temp_download_path }}\\SQLServer2019-SSEI-Dev.exe"
     arguments: /Action=Download /MediaPath="{{ mssql_installation_path }}" /MediaType=CAB /Quiet
 
 # Job will fail if extracted media folder is not empty, quick step to ensure it's empty
@@ -116,7 +116,7 @@
     state: absent
 
 - name: Extract installation media
-  win_shell: "{{ mssql_installation_path }}\\SQLServer2017-DEV-x64-ENU.exe /X:{{ mssql_installation_path }}\\Media /Q"
+  win_shell: "{{ mssql_installation_path }}\\SQLServer2019-DEV-x64-ENU.exe /X:{{ mssql_installation_path }}\\Media /Q"
 # If this step fails, logs are in C:\Program Files\Microsoft SQL Server\...\Setup Bootstrap\Log
 # it will often contain the actual error.  If it shows everything passing, the issue is within the DSC logs.
 # 
