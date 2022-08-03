@@ -12,7 +12,7 @@
     TcpPort: 25
   tags: configure_mailserver
   register: sql_mail_vars
-  ignore_errors: yes
+  ignore_errors: True
 
 - name: Enable database mail XPs
   win_dsc:

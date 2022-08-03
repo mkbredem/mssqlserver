@@ -22,7 +22,7 @@
     TcpPort: 25
   tags: configure_mailserver
   register: sql_mail_vars
-  ignore_errors: yes
+  ignore_errors: True
 
 #    AccountName - [Key, Description("The name of the _Database Mail_ account.")] String ;
 #    InstanceName - [Key, Description("The name of the _SQL Server_ instance to be configured.")] String ;
