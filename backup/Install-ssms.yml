@@ -1,0 +1,5 @@
+- name: SQL Server
+  hosts: plat_windows
+
+  roles:
+    - ssms_setup

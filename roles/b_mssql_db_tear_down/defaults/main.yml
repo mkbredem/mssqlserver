@@ -1,0 +1,10 @@
+# sql mail database information
+mssql_mail_db_instance_name: MTA DBMail
+mssql_mail_db_email_address: MTADBServer@MTA.local
+mssql_mail_db_display_name: MTADBServer
+
+# instance details
+mssql_instance_name: Test
+#mssql_drive: C
+#mssql_userdbvol_name: Userdbvol01
+#mssql_port: 1433

@@ -1,5 +1,0 @@
---- 
-- name: Development Tests
-  hosts: "{{ target_hosts }}" 
-
-  tasks:

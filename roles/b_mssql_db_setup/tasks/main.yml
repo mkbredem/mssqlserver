@@ -1,19 +1,4 @@
-#---
-# Begin SQL Database Setup - link to DSC Resource MOF/Variables: https://github.com/dsccommunity/SqlServerDsc/blob/main/source/DSCResources/DSC_SqlDatabaseMail/DSC_SqlDatabaseMail.schema.mof
-- name: give me some variable values
-  debug:
-    msg: | 
-      The InstanceName, AccountName, and ProfileName should be {{ mssql_instance_name }}.
-      The ServerName is {{ inventory_hostname }} 
-      The MailServerName is {{ ansible_facts.ip_addresses[1] }}
-#      The DscRunAsCredential _username: {{ mssql_sqlsvc_account }} _password: {{ mssql_sqlsvc_account_pass }}
-
-#- name: Install needed DSC modules
-#  community.windows.win_psmodule:
-#    name: SqlServer
-#    state: present
-#    allow_clobber: yes
-
+# SQL Database Setup Docs - link to DSC Resource MOF/Variables: https://github.com/dsccommunity/SqlServerDsc/blob/main/source/DSCResources/DSC_SqlDatabaseMail/DSC_SqlDatabaseMail.schema.mof
 - name: Enable database mail XPs
   win_dsc:
     resource_name: SqlConfiguration 
@@ -26,14 +11,12 @@
 - name: Setup MS SQL Mail Server
   win_dsc:
     resource_name: SqlDatabaseMail
-    ServerName: "{{ ansible_facts['hostname'] }}"  # tried: ansible_facts['hostname']
+    ServerName: "{{ ansible_facts['hostname'] }}" 
     InstanceName: "{{ mssql_instance_name }}"
     AccountName: "{{ mssql_mail_db_instance_name }}"
     EmailAddress: "{{ mssql_mail_db_email_address }}"
     MailServerName: "{{ ansible_facts.ip_addresses[1]}}"
     ProfileName: "{{ mssql_mail_db_instance_name }}"
-#    PsDscRunAsCredential_username: "{{ dsc_cred_user }}"
-#    PsDscRunAsCredential_password: "{{ dsc_cred_passwd }}"
     Ensure: Present
     DisplayName: "{{ mssql_mail_db_display_name }}"
     TcpPort: 25
