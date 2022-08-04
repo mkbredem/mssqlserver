@@ -20,8 +20,6 @@
     Ensure: Present
     DisplayName: "{{ mssql_mail_db_display_name }}"
     TcpPort: 25
-  tags: configure_mailserver
-  register: sql_mail_vars
   ignore_errors: True
 
 #    AccountName - [Key, Description("The name of the _Database Mail_ account.")] String ;
