@@ -14,7 +14,7 @@
   register: sql_mail_vars
   ignore_errors: True
 
-- name: Enable database mail XPs
+- name: disable database mail XPs
   win_dsc:
     resource_name: SqlConfiguration 
     ServerName: "{{ ansible_hostname }}"
