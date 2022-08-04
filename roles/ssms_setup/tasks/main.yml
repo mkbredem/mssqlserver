@@ -10,7 +10,6 @@
 - name: install SQL Server Management Studio (SSMS)
   ansible.windows.win_package:
     path: "{{ mssql_temp_download_path }}\\SSMS-Setup-ENU.exe"
-#    path: https://go.microsoft.com/fwlink/?linkid=2195969&clcid=0x409
     arguments:
     - /install
     - /quiet
