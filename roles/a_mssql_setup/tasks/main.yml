@@ -13,6 +13,7 @@
         - ServerManager
         - dbatools
         - xNetworking
+        - SqlServerNetwork
       loop_control:
         loop_var: module_item
         label: "{{ module_item }}"
