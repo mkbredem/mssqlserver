@@ -169,15 +169,50 @@
   tags: configure_firewall
 
 # Begin SQL Server configuration
+# 
+#*****************************************************************************************************
+# the TCP Connecitivty DSC using SqlServerNetwork seems to have been removed from SqlServerDsc
+#
+# NAME
+#     SqlServerNetwork
+#  
+# DEPRECATION NOTICE
+#  
+#     The SqlServerNetwork DSC resource is DEPRECATED. The resource
+#     is replaced by the resources SqlServerProtocol and SqlServerProtocolTcpIp.
+# *****************************************************************************************************
+#
+#- name: Enable TCP Connectivity
+#   win_dsc:
+#     resource_name: SqlServerNetwork
+#     InstanceName: "{{ mssql_instance_name }}"
+#     ProtocolName: tcp
+#     TcpPort: "{{ mssql_port }}"
+#     IsEnabled: True
+#     RestartService: True
+#   tags: configure_sql
+#
+#**** Trying the following DSC Instead ******
 - name: Enable TCP Connectivity
   win_dsc:
-    resource_name: SqlServerNetwork
+    resource_name: SqlProtocol
     InstanceName: "{{ mssql_instance_name }}"
-    ProtocolName: tcp
-    TcpPort: "{{ mssql_port }}"
-    IsEnabled: True
-    RestartService: True
-  tags: configure_sql
+    ProtocolName: TcpIp
+    Enable: True
+
+# {
+#     [Key, Description("Specifies the name of the _SQL Server_ instance to enable the protocol for.")] String InstanceName;
+#     [Key, Description("Specifies the name of network protocol to be configured."), ValueMap{"SharedMemory", "NamedPipes", "TcpIp"}, Values{"SharedMemory", "NamedPipes", "TcpIp"}] String ProtocolName;
+#     [Write, Description("Specifies the host name of the _SQL Server_ to be configured. If the SQL Server belongs to a cluster or availability group specify the host name for the listener or cluster group. Default value is the current computer name.")] String ServerName;
+#     [Write, Description("Specifies if the protocol should be enabled or disabled.")] Boolean Enabled;
+#     [Write, Description("Specifies to listen on all IP addresses. Only used for the _TCP/IP_ protocol, ignored for all other protocols.")] Boolean ListenOnAllIpAddresses;
+#     [Write, Description("Specifies the keep alive duration in milliseconds. Only used for the _TCP/IP_ protocol, ignored for all other protocols.")] SInt32 KeepAlive;
+#     [Write, Description("Specifies the name of the named pipe. Only used for the _Named Pipes_ protocol, ignored for all other protocols.")] String PipeName;
+#     [Write, Description("If set to `$true` then the any attempt by the resource to restart the service is suppressed. The default value is `$false`.")] Boolean SuppressRestart;
+#     [Write, Description("Timeout value for restarting the _SQL Server_ services. The default value is `120` seconds.")] UInt16 RestartTimeout;
+#     [Read, Description("Returns `$true` or `$false` whether the instance has multiple IP addresses or not.")] Boolean HasMultiIPAddresses;
+# };
+
 
 - name: Adjust Max Server Memory to {{ mssql_max_server_memory }}
   when: mssql_max_server_memory is defined
