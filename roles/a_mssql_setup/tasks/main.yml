@@ -4,14 +4,8 @@
     - name: Make sure NuGet provider is installed
       ansible.windows.win_shell: Install-PackageProvider -Name NuGet -Force
 
-# - name: Install needed dsc modules
-#   win_shell: Install-Module -Name {{ module_item }} -Force
-
-    - name: Install needed DSC modules
-      community.windows.win_psmodule:
-        name: "{{ module_item }}"
-        state: present
-        accept_license: true
+    - name: Install needed dsc modules
+      win_shell: Install-Module -Name {{ module_item }} -Force
       loop:
         - ActiveDirectoryDsc
         - SQLServerDsc
@@ -22,6 +16,22 @@
       loop_control:
         loop_var: module_item
         label: "{{ module_item }}"
+
+    # - name: Install needed DSC modules
+    #   community.windows.win_psmodule:
+    #     name: "{{ module_item }}"
+    #     state: present
+    #     accept_license: true
+    #   loop:
+    #     - ActiveDirectoryDsc
+    #     - SQLServerDsc
+    #     - StorageDsc
+    #     - ServerManager
+    #     - dbatools
+    #     - xNetworking
+    #   loop_control:
+    #     loop_var: module_item
+    #     label: "{{ module_item }}"
 
     - name: Install needed Windows Server Features
       ansible.windows.win_feature:
