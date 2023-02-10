@@ -1,6 +1,6 @@
 - name: SQL Server
   hosts: "{{ target_hosts }}"
-  tags: mssql
+  tags: mssql, configure_sql
 
   roles:
     - a_mssql_setup
