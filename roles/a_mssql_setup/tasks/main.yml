@@ -198,8 +198,8 @@
     resource_name: SqlProtocol
     InstanceName: "{{ mssql_instance_name }}"
     ProtocolName: TcpIp
-    Enable: True
-
+    Enabled: True
+  tags: configure_sql
 # {
 #     [Key, Description("Specifies the name of the _SQL Server_ instance to enable the protocol for.")] String InstanceName;
 #     [Key, Description("Specifies the name of network protocol to be configured."), ValueMap{"SharedMemory", "NamedPipes", "TcpIp"}, Values{"SharedMemory", "NamedPipes", "TcpIp"}] String ProtocolName;
